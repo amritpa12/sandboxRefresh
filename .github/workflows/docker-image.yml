@@ -12,12 +12,8 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
-    
 
-      - name: Authenticate to Salesforce using Device Code
-        id: auth
-        run: |
-            sf org login device --set-default-dev-hub --alias ${{ secrets.SF_ORG_ALIAS }}
+    
       - name: Install Salesforce CLI
         run: |
             wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.gz -O /tmp/sf-linux-x64.tar.gz
@@ -25,9 +21,11 @@ jobs:
             sudo tar -xzf /tmp/sf-linux-x64.tar.gz -C /usr/local/sf --strip-components=1
             sudo ln -s /usr/local/sf/bin/sf /usr/local/bin/sf
             rm /tmp/sf-linux-x64.tar.gz
-
-      - name: Install Salesforce CLI via npm
-        run: npm install --global sfdx-cli
+        
+      - name: Authenticate to Salesforce using Device Code
+        id: auth
+        run: |
+            sf org login device --set-default-dev-hub --alias ${{ secrets.SF_ORG_ALIAS }}
 
       - name: Refresh Sandbox
         run: |
