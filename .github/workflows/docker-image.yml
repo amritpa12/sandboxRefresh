@@ -12,6 +12,11 @@ jobs:
     steps:
       - name: Checkout repository
         uses: actions/checkout@v2
+    
+      - name: Install Salesforce CLI
+        run: |
+            wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.gz
+            tar xJf sfdx-linux-amd64.tar.xz --directory /usr/local --strip-components 1
 
 
 
@@ -25,6 +30,7 @@ jobs:
 
       - name: Refresh Sandbox
         run: |
+            sfdx update
             sfdx force:org:sandbox:refresh --target-org peerless1234 --name EmailOut
 
       - name: Create Docker Image
