@@ -13,10 +13,10 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
-      - name: Set timezone environment variable
+      - name: Set timezone non-interactively
         run: |
-          echo "Setting timezone to UTC"
-          sudo ln -fs /usr/share/zoneinfo/UTC /etc/localtime
+          echo "Setting timezone to Etc/UTC"
+          echo 'Etc/UTC' | sudo tee /etc/timezone
           sudo dpkg-reconfigure -f noninteractive tzdata
 
       - name: Install Salesforce CLI
