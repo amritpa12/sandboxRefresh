@@ -13,11 +13,11 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
     
-      - name: Install Node.js
-        uses: actions/setup-node@v2
-        with:
-          node-version: '16'
 
+      - name: Authenticate to Salesforce using Device Code
+        id: auth
+        run: |
+            sfdx auth:device:login --setdefaultdevhubusername --setalias ${{ secrets.SF_ORG_ALIAS }}
       - name: Install Salesforce CLI
         run: |
             wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.gz -O /tmp/sf-linux-x64.tar.gz
