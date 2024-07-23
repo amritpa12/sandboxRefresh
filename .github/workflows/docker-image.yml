@@ -30,8 +30,8 @@ jobs:
 
       - name: Refresh Sandbox
         run: |
-            sfdx update
-            sfdx force:org:sandbox:refresh --target-org peerless1234 --name EmailOut
+            sf update
+            sf force:org:sandbox:refresh --target-org peerless1234 --name EmailOut
 
       - name: Create Docker Image
         run: |
