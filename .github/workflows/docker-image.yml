@@ -21,9 +21,7 @@ jobs:
       - name: Authenticate to Salesforce using Device Code
         id: auth
         run: |
-          sfdx auth:device:login -d -a ${{ secrets.SF_ORG_ALIAS }} --clientid ${{ secrets.SF_CLIENT_ID }}
-        env:
-          SF_CLIENT_ID: ${{ secrets.SF_CLIENT_ID }}
+          sf org login device --set-default-dev-hub --alias ${{ secrets.SF_ORG_ALIAS }}
 
       - name: Refresh Sandbox
         run: |
