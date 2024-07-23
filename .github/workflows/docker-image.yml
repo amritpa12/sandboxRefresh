@@ -23,15 +23,9 @@ jobs:
       - name: Install Salesforce CLI
         run: npm install --global sfdx-cli
 
-      - name: Authenticate to Salesforce using Device Code
-        id: auth
-        run: |
-          sfdx auth:device:login --setdefaultdevhubusername --setalias ${{ secrets.SF_ORG_ALIAS }}
-
       - name: Refresh Sandbox
         run: |
-          sfdx force:org:delete -u ${{ secrets.SF_ORG_ALIAS }} -p
-          sfdx force:org:create -f config/project-scratch-def.json -a ${{ secrets.SF_ORG_ALIAS }}
+            sf org refresh sandbox --name EmailOut --target-org peerless1234 
 
       - name: Create Docker Image
         run: |
