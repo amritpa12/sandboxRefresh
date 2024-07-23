@@ -1,22 +1,17 @@
-FROM ubuntu:20.04
+# Use a base image
+FROM ubuntu:latest
 
-# Install necessary dependencies
-RUN apt-get update && \
-    apt-get install -y wget tar nodejs npm
+# Set environment variables to avoid interactive prompts
+ARG DEBIAN_FRONTEND=noninteractive
+ARG TZ=Etc/UTC
 
-# Install Salesforce CLI
-RUN wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.gz -O /tmp/sf-linux-x64.tar.gz && \
-    tar -xzf /tmp/sf-linux-x64.tar.gz -C /usr/local --strip-components=1 && \
-    rm /tmp/sf-linux-x64.tar.gz
+# Set the timezone environment variable
+ENV TZ=$TZ
 
-# Install Salesforce CLI via npm
-RUN npm install --global sfdx-cli
+# Update package list and install tzdata
+RUN apt-get update && apt-get install -y tzdata
 
-# Add Salesforce CLI to PATH
-ENV PATH="/usr/local/bin:$PATH"
+# Configure tzdata package
+RUN ln -fs /usr/share/zoneinfo/$TZ /etc/localtime && dpkg-reconfigure --frontend noninteractive tzdata
 
-# Verify installation
-RUN sf --version
-
-# Set up entrypoint for Docker
-ENTRYPOINT ["sf"]
+# Your other Dockerfile commands here
