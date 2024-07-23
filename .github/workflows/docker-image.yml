@@ -32,4 +32,4 @@ jobs:
       - name: Refresh Sandbox
         run: |
             sf update
-            sf force:org:sandbox:refresh --target-org peerless1234 --name EmailOut
+            sf org refresh sandbox --name EndofMonth --target-org peerless1234
