@@ -17,7 +17,7 @@ jobs:
       - name: Authenticate to Salesforce using Device Code
         id: auth
         run: |
-            sfdx auth:device:login --setdefaultdevhubusername --setalias ${{ secrets.SF_ORG_ALIAS }}
+            sf org login device --set-default-dev-hub --alias ${{ secrets.SF_ORG_ALIAS }}
       - name: Install Salesforce CLI
         run: |
             wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.gz -O /tmp/sf-linux-x64.tar.gz
