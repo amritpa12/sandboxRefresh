@@ -13,6 +13,12 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v2
 
+      - name: Set timezone environment variable
+        run: |
+          echo "Setting timezone to UTC"
+          sudo ln -fs /usr/share/zoneinfo/UTC /etc/localtime
+          sudo dpkg-reconfigure -f noninteractive tzdata
+
       - name: Install Salesforce CLI
         run: |
             wget https://developer.salesforce.com/media/salesforce-cli/sf/channels/stable/sf-linux-x64.tar.gz -O /tmp/sf-linux-x64.tar.gz
@@ -45,4 +51,4 @@ jobs:
         with:
             context: .
             push: true
-            tags: ${{ secrets.DOCKER_USERNAME }}/salesforcesandbox:latest
+            tags: ${{ secrets.DOCKER_USERNAME }}/salesforceSandbox:latest
