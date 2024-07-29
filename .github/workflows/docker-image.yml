@@ -27,11 +27,6 @@ jobs:
             sudo ln -s /usr/local/sf/bin/sf /usr/local/bin/sf
             rm /tmp/sf-linux-x64.tar.gz
 
-      - name: Authenticate to Salesforce using Device Code
-        id: auth
-        run: |
-            sf org login device --set-default-dev-hub --alias ${{ secrets.SF_ORG_ALIAS }}
-
 
       - name: Authenticate to Salesforce using JWT
         env:
