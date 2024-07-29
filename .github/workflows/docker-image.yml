@@ -43,8 +43,7 @@ jobs:
         run: |
             sf update
             sf org list
-            sf org refresh sandbox --name EmailOut --target-org peerless1234 --no-prompt -w 1440
-            sf org resume sandbox --job-id 0GRQi0000000hubOAA -o
+            sf org refresh sandbox --name Backup224 --target-org peerless1234 --no-prompt -w 1440
 
 
       - name: Log in to Docker Hub
