@@ -36,7 +36,7 @@ jobs:
               SF_INSTANCE_URL: ${{ secrets.SF_INSTANCE_URL }}
         run: |
           echo "${{ secrets.SERVERKEY }}" > server.key
-          sf org login jwt --client-id ${{ secrets.SF_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_USERNAME }} --instance-url ${{ secrets.SF_INSTANCE_URL }}
+          sf org login jwt --client-id ${{ secrets.SF_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_USERNAME }} --instance-url ${{ secrets.SF_INSTANCE_URL }} --alias peerless1234 --set-default
 
 
       - name: Refresh Sandbox
