@@ -38,6 +38,7 @@ jobs:
           echo "${{ secrets.SERVERKEY }}" > server.key
           sf org login jwt --client-id ${{ secrets.SF_CONSUMER_KEY }} --jwt-key-file server.key --username ${{ secrets.SF_USERNAME }} --instance-url ${{ secrets.SF_INSTANCE_URL }}
 
+
       - name: Refresh Sandbox
         run: |
             sf update
