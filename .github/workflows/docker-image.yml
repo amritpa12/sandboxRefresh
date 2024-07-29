@@ -42,6 +42,7 @@ jobs:
       - name: Refresh Sandbox
         run: |
             sf update
+            sf org list
             sf org refresh sandbox --name EndofMonth --target-org peerless1234
 
       - name: Log in to Docker Hub
