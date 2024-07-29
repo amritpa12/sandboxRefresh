@@ -32,6 +32,17 @@ jobs:
         run: |
             sf org login device --set-default-dev-hub --alias ${{ secrets.SF_ORG_ALIAS }}
 
+
+      - name: Authenticate to Salesforce using JWT
+        env:
+              SF_CONSUMER_KEY: ${{ secrets.SF_CONSUMER_KEY }}
+              SF_USERNAME: ${{ secrets.SF_USERNAME }}
+              SF_JWT_KEY: ${{ secrets.SERVERKEY }}
+              SF_INSTANCE_URL: ${{ secrets.SF_INSTANCE_URL }}
+        run: |
+              echo "${{ secrets.SERVERKEY }}" > server.key
+              sfdx force:auth:jwt:grant --clientid ${{ secrets.SF_CONSUMER_KEY }} --jwtkeyfile server.key --username ${{ secrets.SF_USERNAME }} --instanceurl ${{ secrets.SF_INSTANCE_URL }}
+
       - name: Refresh Sandbox
         run: |
             sf update
