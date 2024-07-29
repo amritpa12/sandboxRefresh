@@ -43,7 +43,9 @@ jobs:
         run: |
             sf update
             sf org list
-            sf org refresh sandbox --name EndofMonth --target-org peerless1234 --no-prompt
+            sf org refresh sandbox --name EndofMonth --target-org peerless1234 --no-prompt -w 90
+            sf org resume sandbox --job-id 0GRQi0000000hubOAA -o
+
 
       - name: Log in to Docker Hub
         uses: docker/login-action@v2
