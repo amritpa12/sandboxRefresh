@@ -43,7 +43,7 @@ jobs:
         run: |
             sf update
             sf org list
-            sf org refresh sandbox --name ${{ secrets.SANDBOXNAME }} --target-org ${{ secrets.SF_ORG_ALIAS }} --no-prompt -w 1440
+            sf org refresh sandbox --name ${{ secrets.SANDBOXNAME }} --target-org SANDBOXNAME=${{ secrets.SF_ORG_ALIAS }} --no-prompt -w 1440
 
 
       - name: Log in to Docker Hub
