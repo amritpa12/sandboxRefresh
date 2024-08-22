@@ -4,7 +4,32 @@ on:
   push:
     branches:
       - main
-  workflow_dispatch:  # Add this line to enable manual triggers
+  workflow_dispatch:
+    inputs:
+      SF_CONSUMER_KEY:
+        description: 'Salesforce Consumer Key'
+        required: true
+      SF_USERNAME:
+        description: 'Salesforce Username'
+        required: true
+      SF_JWT_KEY:
+        description: 'Salesforce JWT Key'
+        required: true
+      SF_INSTANCE_URL:
+        description: 'Salesforce Instance URL'
+        required: true
+      SF_ORG_ALIAS:
+        description: 'Salesforce Org Alias'
+        required: true
+      SANDBOXNAME:
+        description: 'Salesforce Sandbox Name'
+        required: true
+      DOCKER_USERNAME:
+        description: 'Docker Hub Username'
+        required: true
+      DOCKER_PASSWORD:
+        description: 'Docker Hub Password'
+        required: true
 
 jobs:
   refresh-sandbox:
